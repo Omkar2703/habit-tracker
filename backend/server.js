@@ -5,23 +5,32 @@ require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
 const habitRoutes = require('./routes/habits');
-// const taskRoutes = require('./routes/tasks');
 const goalRoutes = require('./routes/goal');
 
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://habit-tracker-ruby-chi.vercel.app',
+];
+
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://habit-tracker-ruby-chi.vercel.app/'  // ← your actual Vercel URL
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    if (/\.vercel\.app$/.test(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.options('*', cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/habits', habitRoutes);
-// app.use('/api/tasks', taskRoutes);
 app.use('/api/goal', goalRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
@@ -31,7 +40,6 @@ mongoose
   .then(() => {
     console.log('MongoDB connected');
     app.listen(process.env.PORT || 5000, () =>
-      console.log(`Server running on port ${process.env.PORT || 5000}`)
-    );
+      console.log(`Server running on port ${process.env.PORT || 5000}`));
   })
   .catch((err) => console.error(err));
