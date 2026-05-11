@@ -1,6 +1,6 @@
 # ✅ Habit Tracker — MERN Stack
 
-A full-stack habit tracking app based on your Excel tracker with habits:
+A full-stack habit tracking app based on your habits:
 Bath & Dress, Breakfast, Exercise/Gym, Session 1, Lunch, Session 2, Snacks, Swimming, Dinner, Session 3, Sleep.
 
 ## Project Structure
