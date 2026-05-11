@@ -20,7 +20,7 @@ body {
   justify-content: space-between;
   padding: 0 16px;
   height: 56px;
-  background: #1e293b;
+  background: linear-gradient(135deg,#18181b 0%,#27272a 60%,#3f3f46 100%);
   color: #fff;
   position: sticky;
   top: 0;
@@ -76,7 +76,7 @@ body {
 /* ============================================
    AUTH
    ============================================ */
-.auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#1e293b 0%,#334155 100%); padding:16px; }
+.auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#18181b 0%,#27272a 60%,#3f3f46 100%); padding:16px; }
 .auth-card { background:#fff; padding:28px 20px; border-radius:16px; width:100%; max-width:420px; box-shadow:0 20px 60px rgba(0,0,0,0.2); }
 @media (min-width: 480px) { .auth-card { padding: 40px 36px; } }
 .auth-card h1 { font-size:1.5rem; text-align:center; margin-bottom:6px; color:#1e293b; }
