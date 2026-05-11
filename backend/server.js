@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 
-const authRoutes = require('./routes/auth');
+const authRoutes  = require('./routes/auth');
 const habitRoutes = require('./routes/habits');
-const goalRoutes = require('./routes/goal');
+const goalRoutes  = require('./routes/goal');
+const taskRoutes  = require('./routes/tasks');
 
 const app = express();
 
@@ -29,11 +30,13 @@ app.use(cors({
 app.options('*', cors());
 app.use(express.json());
 
-app.use('/api/auth', authRoutes);
-app.use('/api/habits', habitRoutes);
-app.use('/api/goal', goalRoutes);
-
+app.get('/', (req, res) => res.json({ message: '✅ Habit Tracker API is running' }));
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+
+app.use('/api/auth',   authRoutes);
+app.use('/api/habits', habitRoutes);
+app.use('/api/goal',   goalRoutes);
+app.use('/api/tasks',  taskRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
