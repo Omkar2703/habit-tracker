@@ -75,7 +75,7 @@ npm install
 npm start
 ```
 
-Frontend runs on **http://localhost:3000**, proxies API calls to **http://localhost:5000**.
+Frontend runs on **http://localhost:3001**, proxies API calls to **http://localhost:5000**.
 
 ## API Endpoints
 
